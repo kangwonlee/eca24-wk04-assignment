@@ -2,8 +2,13 @@ import math
 import pathlib
 import random
 import sys
-from typing import Tuple
 
+from typing import List, Tuple
+
+
+import numpy as np
+import numpy.random as nr
+import pandas as pd
 import pytest
 
 
@@ -25,41 +30,39 @@ random.seed()
 
 
 @pytest.fixture
-def prime_below_100() -> Tuple[int]:
-    # https://thirdspacelearning.com/us/blog/what-is-a-prime-number/
-    return (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+def n() -> int:
+    return random.randint(5, 8)
 
 
 @pytest.fixture
-def expected(prime_below_100:Tuple[int]) -> int:
-    while True:
-        a = random.randint(50, 100)
-        if a not in prime_below_100:
-            return a
+def a() -> float:
+    return (random.random() - 0.5) * 4
 
 
 @pytest.fixture
-def w_h(expected:int) -> Tuple[int]:
-    max_w = int(math.sqrt(expected))
-    for w in range(max_w, 1, -1):
-        if expected % w == 0:
-            return (w, expected // w)
+def expected(n) -> np.ndarray:
+    return (nr.randint(-32, 31, (n,)) * 1.0)
 
 
 @pytest.fixture
-def width(w_h:Tuple[int]) -> int:
-    return w_h[0]
+def x(expected:np.ndarray, a:float) -> Tuple[float]:
+    return tuple((expected / a).tolist())
 
 
 @pytest.fixture
-def height(w_h:Tuple[int]) -> int:
-    return w_h[1]
+def result(a:float, x:Tuple[float]) -> List[float]:
+    return wk03.wk03(a, x)
 
 
-@pytest.fixture
-def result(width:int, height:int) -> int:
-    return wk03.wk03(width, height)
+def test_wk03(result:int, a:Tuple[int], x:Tuple[int], expected:int):
+    df = pd.DataFrame(
+        data={'result': result, 'expected': expected},
+        columns=['result', 'expected']
+    )
+    df['is close'] = np.isclose(df['result'], df['expected'])
+    message = (
+        f"a={a}, x={x}\n"
+        f"{df}\n"
+    )
 
-
-def test_wk03(result:int, width:Tuple[int], height:Tuple[int], expected:int):
-    assert result == expected, f"width={width}, height={height}, result={result}, expected={expected}"
+    assert all(df['is close']), message
