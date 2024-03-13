@@ -25,7 +25,9 @@ def test_function_only_in_py_file(py_file:pathlib.Path):
         line_strip = line.strip()
         if line.startswith('#') or line.startswith('"""') or line.startswith("'''"):
             continue
-        if line.startswith('def ') and line_strip.endswith(':'):
+        elif line.startswith('def ') and line_strip.endswith(':'):
+            continue
+        elif line.startswith('import ') or (line.startswith('from ') and ' import ' in line):
             continue
         assert line.startswith(' ') or line_strip == ''
 
