@@ -18,7 +18,7 @@ sys.path.insert(
 )
 
 
-import wk02
+import wk03
 
 
 random.seed()
@@ -58,8 +58,8 @@ def height(w_h:Tuple[int]) -> int:
 
 @pytest.fixture
 def result(width:int, height:int) -> int:
-    return wk02.wk02(width, height)
+    return wk03.wk03(width, height)
 
 
-def test_wk02(result:int, width:Tuple[int], height:Tuple[int], expected:int):
+def test_wk03(result:int, width:Tuple[int], height:Tuple[int], expected:int):
     assert result == expected, f"width={width}, height={height}, result={result}, expected={expected}"
