@@ -1,4 +1,4 @@
-## wk03 area
+## wk03 multiply
 
 * Exercise file 실습파일 : wk03.py
 * Complete function `wk03()` as follows.<br>함수 `wk03()`을 다음과 같이 완성하시오.
