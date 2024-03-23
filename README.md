@@ -1,17 +1,24 @@
-## wk03 multiply
+## wk04 seq_step
 
-* Exercise file 실습파일 : wk03.py
-* Complete function `wk03()` as follows.<br>함수 `wk03()`을 다음과 같이 완성하시오.
+* Exercise file 실습파일 : wk04.py
+* Complete function `wk04()` as follows.<br>함수 `wk04()`을 다음과 같이 완성하시오.
 * Accept following arguments<br>다음과 같은 매개변수를 받아들이시오 :
 
 argument<br>매개변수 | type<br>변수형 | description<br>설명
 :-----:|:-----:|-----
-`a` | `float` | real number to mulitply to `x`<br>`x`에 곱할 실수
-`x` | `List[float]` | list of numbers to multipy with `a`<br>`a`를 곱할 수들의 리스트
+`f` | `Callable[[float], float]` | the function that we want to find `x` satisfying $f(x)=0$<br>근을 찾고 싶은 함수
+`xp` | `float` | the argument of function `f` of the previous step<br>함수 `f`의 이전 단계의 매개변수
+`delta_x` | `float` | increment of `x` (difference between `x`s of this & previous steps)<br>`x`의 증분 (이번 단계와 이전 단계의 `x`의 차이)
+`epsilon` | `float` | degree of tolerance<br>오차 허용 한계
 
-* Return a list of numbers. Each number is the product of `a` and each member in `x`.<br>숫자들의 리스트를 반환하시오. 각 숫자는 `a`와 `x`의 각 항목의 곱.
+* Return a dictionay with folliwing key-value pairs<br>다음과 같은 key-value 를 담은 `dict`를 반환하시오.
+
+key | type of value<br>value 의 자료형 | description<br>설명
+:-----:|:-----:|-----
+`'x'` | `float` | `x` for this step of sequential method<br>순차법에서 이번 단계의 `x`
+`'found'` | `bool` | whether the `x` of this step satisfies<br>이번 단계의 `x`가 만족하는가?
+
 * Withtin the file, leave lines belong to the functions only.<br>해당 파이썬 스크립트 파일에는 해당 함수만 제출 바랍니다.
-* see<br>참고문헌 : https://wikidocs.net/24#_3
 
 ## How to use Github web editor<br>Github 웹 편집기 사용법
 * Press <kbd>.</kbd> key to start MS VS Code web editor<br><kbd>.</kbd> 키를 누르면 MS VS Code 의 Web version 이 시작됨
