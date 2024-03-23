@@ -6,7 +6,7 @@
 
 argument<br>매개변수 | type<br>변수형 | description<br>설명
 :-----:|:-----:|-----
-`f` | `Callable[[float], float]` | the function that we want to find `x` satisfying $f(x)=0$<br>근을 찾고 싶은 함수
+`f` | `Callable[[float], float]` | the function that we want to find `x` satisfying $f(x)=0$<br>근을 찾고 싶은 함수<br>takes one float as input and returns a float<br>입력으로 실수 하나를 받아 들이고 결과값으로 실수 하나를 반환할 것임
 `xp` | `float` | the argument of function `f` of the previous step<br>함수 `f`의 이전 단계의 매개변수
 `delta_x` | `float` | increment of `x` (difference between `x`s of this & previous steps)<br>`x`의 증분 (이번 단계와 이전 단계의 `x`의 차이)
 `epsilon` | `float` | degree of tolerance<br>오차 허용 한계
