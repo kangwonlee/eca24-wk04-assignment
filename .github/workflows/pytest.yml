@@ -37,4 +37,4 @@ jobs:
       run: python -m pytest tests/test_all_lines_in_the_function.py tests/test_grammar.py
     - name: Test results
       id: result-test
-      run: python -m pytest tests/test_wk03.py
+      run: python -m pytest tests/test_wk04.py

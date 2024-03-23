@@ -23,7 +23,7 @@ sys.path.insert(
 )
 
 
-import wk03
+import wk04
 
 
 random.seed()
@@ -51,7 +51,7 @@ def x(expected:np.ndarray, a:float) -> Tuple[float]:
 
 @pytest.fixture
 def result(a:float, x:Tuple[float]) -> List[float]:
-    return wk03.wk03(a, x)
+    return wk04.wk04(a, x)
 
 
 def test_is_return_none(result:List[int]):
