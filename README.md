@@ -19,6 +19,8 @@ key | type of value<br>value 의 자료형 | description<br>설명
 `'found'` | `bool` | whether the `x` of this step satisfies<br>이번 단계의 `x`가 만족하는가?
 
 * Withtin the file, leave lines belong to the functions only.<br>해당 파이썬 스크립트 파일에는 해당 함수만 제출 바랍니다.
+* Do not use any other modules<br>다른 모듈은 사용하지 마시오.
+* Change wk04.py file only<br>wk04.py 파일만 변경하시오.
 
 ## How to use Github web editor<br>Github 웹 편집기 사용법
 * Press <kbd>.</kbd> key to start MS VS Code web editor<br><kbd>.</kbd> 키를 누르면 MS VS Code 의 Web version 이 시작됨
