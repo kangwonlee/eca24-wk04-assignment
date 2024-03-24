@@ -67,7 +67,9 @@ def get_epsilon() -> float:
     return ((0.1 ** exp) * sig)
 
 
-def append_poly(f_x_dx_found:List[RESULT]=[]):
+def append_poly() -> List[RESULT]:
+
+    cases = []
 
     for found in (True, False):
         p_roots = poly_roots()
@@ -87,16 +89,14 @@ def append_poly(f_x_dx_found:List[RESULT]=[]):
 
         d_poly['xp'] = (d_poly['x'] - d_poly['delta_x'])
 
-        f_x_dx_found.append(d_poly)
+        cases.append(d_poly)
 
-    return f_x_dx_found
+    return cases
 
 
-def append_exp(f_x_dx_found:List[RESULT]=[]):
+def append_exp() -> List[RESULT]:
 
-    # a exp (x) = b > 0
-    # exp (x) = b / a
-    # x = ln(b / a)
+    cases = []
 
     exp_a = exp_coef()
     exp_b = exp_a * exp_coef()
@@ -119,13 +119,9 @@ def append_exp(f_x_dx_found:List[RESULT]=[]):
 
         d_exp['xp'] = (d_exp['x'] - d_exp['delta_x'])
 
-        f_x_dx_found.append(d_exp)
+        cases.append(d_exp)
 
-    return f_x_dx_found
-
-
-cases = append_poly(append_exp())
-random.shuffle(cases)
+    return cases
 
 
 @pytest.fixture
@@ -145,7 +141,7 @@ def result_expected(request) -> Tuple[RESULT]:
     return (d_result, d_expected)
 
 
-@pytest.mark.parametrize("result_expected", cases, indirect=True)
+@pytest.mark.parametrize("result_expected", (append_poly() + append_exp()), indirect=True)
 def test_check_values(result_expected:Tuple[RESULT]):
     result, expected = result_expected
 
