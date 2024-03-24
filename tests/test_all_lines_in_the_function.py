@@ -12,11 +12,6 @@ test_folder = file_path.parent.absolute()
 proj_folder = test_folder.parent.absolute()
 
 
-def py_files() -> Tuple[pathlib.Path]:
-    return tuple(proj_folder.glob("*.py"))
-
-
-@pytest.mark.parametrize("py_file", py_files())
 def test_function_only_in_py_file(py_file:pathlib.Path):
     with open(py_file, 'r') as file:
         lines = file.readlines()

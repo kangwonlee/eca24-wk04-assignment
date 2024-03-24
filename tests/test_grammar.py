@@ -2,8 +2,6 @@ import ast
 import logging
 import pathlib
 
-from typing import Tuple
-
 import pytest
 
 
@@ -15,11 +13,6 @@ logger = logging.getLogger(__file__)
 logger.setLevel(logging.INFO)
 
 
-def py_files() -> Tuple[pathlib.Path]:
-    return tuple(proj_folder.glob("*.py"))
-
-
-@pytest.mark.parametrize("py_file", py_files())
 def test_grammar(py_file:pathlib.Path):
 
     code = py_file.read_text(encoding="utf-8")
@@ -30,7 +23,6 @@ def test_grammar(py_file:pathlib.Path):
         pytest.fail(f"Syntax error in file: {py_file.relative_to(proj_folder)}\n{e}")
 
 
-@pytest.mark.parametrize("py_file", py_files())
 def test_module(py_file:pathlib.Path):
 
     code = py_file.read_text(encoding="utf-8")
