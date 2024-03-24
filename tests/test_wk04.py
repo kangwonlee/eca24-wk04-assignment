@@ -3,7 +3,7 @@ import pathlib
 import random
 import sys
 
-from typing import Callable, Dict, List, Tuple
+from typing import Callable, Generator, Dict, Tuple
 
 
 import pytest
@@ -67,16 +67,19 @@ def get_epsilon() -> float:
     return ((0.1 ** exp) * sig)
 
 
-def append_poly() -> List[RESULT]:
-
-    cases = []
+def generate_test_cases() -> Generator[RESULT, None, None]:
 
     for found in (True, False):
-        p_roots = poly_roots()
+        yield (generate_poly_case(found))
+        yield (generate_exp_case(found))
 
-        delta_x = get_delta_x()
 
-        d_poly = {
+def generate_poly_case(found:bool):
+    p_roots = poly_roots()
+
+    delta_x = get_delta_x()
+
+    d_poly = {
             'found': found,
             'x': p_roots[0],
             'delta_x': delta_x,
@@ -84,29 +87,22 @@ def append_poly() -> List[RESULT]:
             'epsilon': get_epsilon(),
         }
 
-        if not found:
-            d_poly['x'] += ((-10.0) * delta_x)
+    if not found:
+        d_poly['x'] += ((-10.0) * delta_x)
 
-        d_poly['xp'] = (d_poly['x'] - d_poly['delta_x'])
-
-        cases.append(d_poly)
-
-    return cases
+    d_poly['xp'] = (d_poly['x'] - d_poly['delta_x'])
+    return d_poly
 
 
-def append_exp() -> List[RESULT]:
-
-    cases = []
-
+def generate_exp_case(found:bool):
     exp_a = exp_coef()
     exp_b = exp_a * exp_coef()
 
-    for found in (True, False):
-        exp_root = math.log(exp_b / exp_a)
+    exp_root = math.log(exp_b / exp_a)
 
-        delta_x = get_delta_x()
+    delta_x = get_delta_x()
 
-        d_exp = {
+    d_exp = {
             'found': found,
             'x': exp_root,
             'delta_x': delta_x,
@@ -114,14 +110,11 @@ def append_exp() -> List[RESULT]:
             'epsilon': get_epsilon(),
         }
 
-        if not found:
-            d_exp['x'] += ((-10.0) * delta_x)
+    if not found:
+        d_exp['x'] += ((-10.0) * delta_x)
 
-        d_exp['xp'] = (d_exp['x'] - d_exp['delta_x'])
-
-        cases.append(d_exp)
-
-    return cases
+    d_exp['xp'] = (d_exp['x'] - d_exp['delta_x'])
+    return d_exp
 
 
 @pytest.fixture
@@ -141,7 +134,7 @@ def result_expected(request) -> Tuple[RESULT]:
     return (d_result, d_expected)
 
 
-@pytest.mark.parametrize("result_expected", (append_poly() + append_exp()), indirect=True)
+@pytest.mark.parametrize("result_expected", generate_test_cases(), indirect=True)
 def test_check_values(result_expected:Tuple[RESULT]):
     result, expected = result_expected
 
