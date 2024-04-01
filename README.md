@@ -2,6 +2,8 @@
 
 * Exercise file 실습파일 : wk04.py
 * Complete function `wk04()` as follows.<br>함수 `wk04()`을 다음과 같이 완성하시오.
+* Implement one step of the sequential method<br>순차법의 한 단계를 구현하시오.
+* The sequential method is a numerical method to find a root of a function<br>순차법은 함수의 근을 찾는 수치해법임.
 * Accept following arguments<br>다음과 같은 매개변수를 받아들이시오 :
 
 argument<br>매개변수 | type<br>변수형 | description<br>설명
@@ -11,6 +13,8 @@ argument<br>매개변수 | type<br>변수형 | description<br>설명
 `delta_x` | `float` | increment of `x` (difference between `x`s of this & previous steps)<br>`x`의 증분 (이번 단계와 이전 단계의 `x`의 차이)
 `epsilon` | `float` | degree of tolerance<br>오차 허용 한계
 
+* Calculate `x` for this step of sequential method using `xp` and `delta_x`<br>`xp`와 `delta_x`를 이용하여 순차법에서 이번 단계의 `x`를 계산하시오.
+* Logically calculate whether the `x` of this step satisfies $|f(x)| < \epsilon$ and store in a `bool` type variable `found`<br>이번 단계의 `x`가 $|f(x)| < \epsilon$를 만족하는지 논리 계산하여 `bool` 자료형 변수인 `found`에 저장하시오.
 * Return a dictionay with folliwing key-value pairs<br>다음과 같은 key-value 를 담은 `dict`를 반환하시오.
 
 key | type of value<br>value 의 자료형 | description<br>설명
