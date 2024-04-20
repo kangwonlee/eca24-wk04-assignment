@@ -1,4 +1,4 @@
-## wk04 seq_step
+## wk04 sequential_step
 
 * Exercise file 실습파일 : wk04.py
 * Complete function `wk04()` as follows.<br>함수 `wk04()`을 다음과 같이 완성하시오.
