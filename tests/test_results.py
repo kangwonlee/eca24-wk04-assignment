@@ -72,6 +72,7 @@ def generate_test_cases() -> Generator[RESULT, None, None]:
     for found in (True, False):
         yield (generate_poly_case(found))
         yield (generate_exp_case(found))
+        yield (generate_lin_case(found))
 
 
 def generate_poly_case(found:bool):
@@ -114,6 +115,33 @@ def generate_exp_case(found:bool):
         d_exp['x'] += ((-10.0) * delta_x)
 
     d_exp['xp'] = (d_exp['x'] - d_exp['delta_x'])
+    return d_exp
+
+
+def generate_lin_case(found:bool):
+    '''
+    To understand epsilon used correctly
+    '''
+    a = random.random() * 5.0 + 5.0
+    b = random.random() * 0.5 + (-1.0)
+
+    x_root = ((-b)/a)
+
+    delta_x = get_delta_x()
+
+    d_exp = {
+            'found': found,
+            'x': x_root,
+            'xp': x_root - delta_x,
+            'delta_x': delta_x,
+            'epsilon': get_epsilon(),
+        }
+
+    if found:
+        d_exp['f'] = lambda x: a * x + b
+    else:
+        d_exp['f'] = lambda x: a * x + (b + d_exp['epsilon'] * 1.2)
+
     return d_exp
 
 
