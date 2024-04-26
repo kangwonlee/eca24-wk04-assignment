@@ -2,9 +2,9 @@ import math
 import pathlib
 import random
 import sys
+import unittest.mock
 
 from typing import Callable, Generator, Dict, Tuple
-
 
 import pytest
 
@@ -182,6 +182,21 @@ def test_check_values(result_expected:Tuple[RESULT]):
     assert (result['found'] == expected['found']), (
         f"expected found = {expected['found']}, result found = {result['found']}"
     )
+
+
+@pytest.mark.parametrize(
+    "epsilon, expected_calls",
+    [
+        (1e-2, 1),  # Large epsilon
+        (1e-8, 1),  # Smaller epsilon
+    ]
+)
+def test_single_iteration(epsilon, expected_calls):
+    mock_f = unittest.mock.MagicMock()
+
+    _ = main.wk04(mock_f, 1.0, 0.5, epsilon)  # Use arbitrary xp, delta_x 
+
+    assert mock_f.call_count == expected_calls
 
 
 if "__main__" == __name__:
