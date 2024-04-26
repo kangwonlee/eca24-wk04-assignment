@@ -22,7 +22,7 @@ sys.path.insert(
 )
 
 
-import wk04
+import main
 
 
 random.seed()
@@ -120,7 +120,7 @@ def generate_exp_case(found:bool):
 @pytest.fixture
 def result_expected(request) -> Tuple[RESULT]:
     d = request.param
-    d_result = wk04.wk04(
+    d_result = main.wk04(
         d['f'],
         d['xp'],
         d['delta_x'],

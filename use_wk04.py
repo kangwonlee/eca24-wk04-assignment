@@ -1,11 +1,11 @@
-import wk04
+import main
 
 
 def sequential(f, x_start, x_end, delta_x, epsilon=1e-6,):
     xp = x_start
 
     while True:
-        d = wk04.wk04(f, xp, delta_x, epsilon)
+        d = main.wk04(f, xp, delta_x, epsilon)
 
         if d['found']:
             break
