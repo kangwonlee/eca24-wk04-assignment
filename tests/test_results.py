@@ -196,7 +196,10 @@ def test_single_iteration(epsilon, expected_calls):
 
     _ = main.wk04(mock_f, 1.0, 0.5, epsilon)  # Use arbitrary xp, delta_x
 
-    assert mock_f.call_count == expected_calls
+    assert mock_f.call_count == expected_calls, (
+        f"Expected {expected_calls} calls to f with epsilon={epsilon}, but got {mock_f.call_count}.\n"
+        f"예상 f 호출 횟수는 {expected_calls}번이지만, 실제노는 {mock_f.call_count}회 호출됨, 주어진 epsilon={epsilon}.\n"
+    )
 
 
 if "__main__" == __name__:
