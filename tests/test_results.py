@@ -172,9 +172,18 @@ def test_check_values(result_expected:Tuple[RESULT]):
         f"return value size={len(result)}, expected size = {len(expected)}"
     )
 
-    assert (result.keys() == expected.keys()), (
-        f"return value keys={result.keys()}, expected keys = {expected.keys()}"
-    )
+    assert result.keys() == expected.keys() and len(result) == len(expected) and \
+           math.isclose(result['x'], expected['x']) and (result['found'] == expected['found']), (
+            f"Incorrect return value:\n"
+            f"  Expected keys: {expected.keys()}\n"
+            f"  Actual keys: {result.keys()}\n"
+            f"  Expected size: {len(expected)}\n"
+            f"  Actual size: {len(result)}\n"
+            f"  Expected x: {expected['x']}\n"
+            f"  Actual x: {result['x']}\n"
+            f"  Expected found: {expected['found']}\n"
+            f"  Actual found: {result['found']}"
+        )
 
     assert math.isclose(
         result['x'], expected['x']
