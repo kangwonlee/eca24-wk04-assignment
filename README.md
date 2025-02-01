@@ -1,6 +1,6 @@
 ## wk04 sequential_step
 
-* Exercise file 실습파일 : main.py
+* Exercise file 실습파일 : exercise.py
 * Complete function `wk04()` as follows.<br>함수 `wk04()`을 다음과 같이 완성하시오.
 * Implement one step of the sequential method<br>순차법의 한 단계를 구현하시오.
 * The sequential method is a numerical method to find a root of a function<br>순차법은 함수의 근을 찾는 수치해법임.
@@ -24,7 +24,7 @@ key | type of value<br>value 의 자료형 | description<br>설명
 
 * Withtin the file, leave lines belong to the functions only.<br>해당 파이썬 스크립트 파일에는 해당 함수만 제출 바랍니다.
 * Do not use any other modules<br>다른 모듈은 사용하지 마시오.
-* Change main.py file only<br>main.py 파일만 변경하시오.
+* Change exercise.py file only<br>exercise.py 파일만 변경하시오.
 * See sample.py to understand how the function is used<br>함수가 어떻게 사용되는지 이해하기 위해 `sample.py` 를 참조하시오.
 
 ``From here is common to all assignments.``

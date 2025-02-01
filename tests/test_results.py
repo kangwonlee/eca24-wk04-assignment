@@ -22,7 +22,7 @@ sys.path.insert(
 )
 
 
-import main
+import exercise
 
 
 random.seed()
@@ -148,7 +148,7 @@ def generate_lin_case(found:bool):
 @pytest.fixture
 def result_expected(request) -> Tuple[RESULT]:
     d = request.param
-    d_result = main.wk04(
+    d_result = exercise.wk04(
         d['f'],
         d['xp'],
         d['delta_x'],
@@ -203,7 +203,7 @@ def test_check_values(result_expected:Tuple[RESULT]):
 def test_single_iteration(epsilon, expected_calls):
     mock_f = unittest.mock.MagicMock(return_value=0.5)
 
-    _ = main.wk04(mock_f, 1.0, 0.5, epsilon)  # Use arbitrary xp, delta_x
+    _ = exercise.wk04(mock_f, 1.0, 0.5, epsilon)  # Use arbitrary xp, delta_x
 
     assert mock_f.call_count == expected_calls, (
         f"Expected {expected_calls} calls to f with epsilon={epsilon}, but got {mock_f.call_count}.\n"

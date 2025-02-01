@@ -41,4 +41,5 @@ def test_module(py_file:pathlib.Path):
 
 
 def test_importable():
-    import main
+    import exercise
+    assert exercise is not None
